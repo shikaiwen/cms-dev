@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 
 /**
  * <p>
@@ -19,11 +21,12 @@ public class Customer extends Model<Customer> {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
     private String name;
     private Date birthday;
     private String address;
-
+    private String email;
 
     public Integer getId() {
         return id;
@@ -63,7 +66,16 @@ public class Customer extends Model<Customer> {
         return this.id;
     }
 
-    @Override
+	
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Override
     public String toString() {
         return "Customer{" +
         "id=" + id +

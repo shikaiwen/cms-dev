@@ -4,37 +4,15 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 2 | Data Tables</title>
-  <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
   <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
-  <!-- DataTables -->
   <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-  <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-
-<!-- 表格组件start -->
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
-	<!-- Latest compiled and minified Locales -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
-<!-- 表格组件end -->
 
 
   <!-- Google Font -->
@@ -529,7 +507,8 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    
+        <section class="content">
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -538,51 +517,32 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>名前</th>
-                  <th>性別</th>
-                  <th>生年月日</th>
-                  <th>住所</th>
-                  <th>メールアドレス</th>
-                  <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>施凱文</td>
-                  <td>男性</td>
-                  <td>1990-01-01</td>
-                  <td>東京島江東区</td>
-                  <td>shikaiwenchina@gmail.com</td>
-                  <td><button type="button" class="btn btn-primary">sendmail</button></td>
-                </tr>
-
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
-    
-        <section class="content">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">顧客照会２</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-				<table id="tb_departments"></table>
+            
+    <div id="toolbar">
+        <button id="addCustomerBtn" class="btn btn-success" >
+            <!-- <i class="glyphicon glyphicon-remove"></i>  -->
+            Add
+        </button>
+         <button id="sendEmailBtn" class="btn btn-danger" >
+            sendEmail
+        </button>
+    </div>
+            
+				<table id="tb_departments"
+			   data-toolbar="#toolbar"
+	           data-search="true"
+	           data-show-refresh="true"
+	           data-show-toggle="false"
+	           data-show-columns="true"
+	           data-show-export="true"
+	           data-detail-view="true"
+	           data-detail-formatter="detailFormatter"
+	           data-minimum-count-columns="2"
+	           data-show-pagination-switch="false"
+	           data-pagination="true"
+	           >
+				
+				</table>
             </div>
             <!-- /.box-body -->
           </div>
@@ -593,6 +553,47 @@
       <!-- /.row -->
     </section>
      
+    
+    <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">顧客新規登録</h4>
+      </div>
+      <div class="modal-body">
+          <h2>新規登録</h2>
+			  <form action="#">
+			    <div class="form-group">
+			      <label for="name">名前:</label>
+			      <input type="text" value="testuser" class="form-control" id="name" placeholder="Enter name" name="name">
+			    </div>
+			    <div class="form-group">
+			      <label for="email">email:</label>
+			      <input type="email" class="form-control" value="abc@gmail.com" id="email" placeholder="Enter email" name="email">
+			    </div>
+			    <div class="form-group">
+			      <label for="pwd">誕生日:</label>
+			      <input type="text" class="form-control" value="1999-01-01" id="birthday" placeholder="Enter birthday" name="birthday">
+			    </div>
+			    <div class="form-group">
+			      <label for="pwd">住所:</label>
+			      <input type="text" class="form-control"  value="東京品川区" id="address" placeholder="Enter address" name="address">
+			    </div>
+			    <div class="checkbox">
+			      <label><input type="checkbox" name="remember"> Remember me</label>
+			    </div>
+			    <button type="button" id="addCusSubmitBtn" class="btn btn-default">登録</button>
+			  </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
     
     
     <!-- /.content -->
@@ -624,6 +625,17 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
+
+<!-- 表格组件start -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
+<!-- 表格组件end -->
+
+<!-- bootstrap弹窗 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.5/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.5/js/bootstrap-dialog.min.js"></script>
 <!-- page script -->
 <script>
 /*   $(function () {
@@ -637,6 +649,87 @@
       'autoWidth'   : false
     })
   }) */
+  
+  var ctx = "/mybatisplus-spring-mvc";
+  
+  function Alert(msg){
+	  BootstrapDialog.show({
+			title: 'Information',
+		    message: msg,
+		    buttons: [{
+		   		label: 'Close',
+		        action: function(dialog) {
+		        	dialog.close();
+		        }
+		    }]
+		});
+  }
+  
+
+  
+  
+  $(function(){
+	  
+	  
+	  $("#sendEmailBtn").click(function(){
+		  
+		  var records = $('#tb_departments').bootstrapTable('getAllSelections');
+		  if(records.length == 0){
+			  alert("choose an item");
+			  return;
+		  }
+		  
+		  var url = ctx+"/customer/sendEmail?";
+		  var emails = records.reduce(function(a,v){
+			  if(!v.email){
+				  return a;
+			  }
+			  a.push(v.email);
+			  url += "email="+v.email+"&";
+			  return a;
+		  },[]);
+		  $.post(url,function(datas){
+			  Alert("邮件发送完成");
+		  })
+		  
+		  
+		  
+	  });
+	 
+	  $("#addCustomerBtn").click(function(){
+		  $('#myModal').modal('show');
+	  });
+	  
+	  $("#addCusSubmitBtn").click(function(){
+		  var getids = ["name","birthday","address","email"];
+		  var formvalues = getids.reduce(function(a,v){
+			  a[v] = $("#"+v).val();
+			  
+			  return a;
+		  },{});
+		
+		  $.post("/mybatisplus-spring-mvc/customer/addCustomer",formvalues,function(datas){
+			  datas = $.parseJSON(datas);
+			  if(datas.success == true){
+				  BootstrapDialog.show({
+						title: 'Information',
+					    message: '登録完了しまし',
+					    buttons: [{
+					   		label: 'Close',
+					        action: function(dialog) {
+					        	dialog.close();
+					        }
+					    }]
+					});
+				  $('#tb_departments').bootstrapTable('refresh', {});
+			  }
+			  $('#myModal').modal("hide")
+
+		  });
+	
+		  
+	  });
+  });
   
   
   $(function () {
@@ -657,7 +750,7 @@
 	    //初始化Table
 	    oTableInit.Init = function () {
 	        $('#tb_departments').bootstrapTable({
-	            url: '/customer/getlist',         //请求后台的URL（*）
+	            url: '/mybatisplus-spring-mvc/customer/selectPage',         //请求后台的URL（*）
 	            method: 'get',                      //请求方式（*）
 	            toolbar: '#toolbar',                //工具按钮用哪个容器
 	            striped: true,                      //是否显示行间隔色
@@ -669,7 +762,7 @@
 	            sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
 	            pageNumber:1,                       //初始化加载第一页，默认第一页
 	            pageSize: 10,                       //每页的记录行数（*）
-	            pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+	            pageList: [5, 25, 50, 100],        //可供选择的每页的行数（*）
 	            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 	            strictSearch: true,
 	            showColumns: true,                  //是否显示所有的列
@@ -678,32 +771,43 @@
 	            clickToSelect: true,                //是否启用点击选中行
 	            height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
 	            uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
-	            showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
-	            cardView: false,                    //是否显示详细视图
-	            detailView: false,                   //是否显示父子表
+	           // showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+	           // cardView: false,                    //是否显示详细视图
+	           // detailView: false,                   //是否显示父子表
+	            responseHandler:function(res){
+	            	//var data = {total:res.obj.length,rows:res.obj}
+	            	return res.obj;
+	            },
 	            columns: [{
 	                checkbox: true
 	            }, {
-	                field: 'Name',
-	                title: '部门名称'
+	                field: 'id',
+	                title: '顧客ID'
+	            },{
+	                field: 'name',
+	                title: '顧客名前'
 	            }, {
-	                field: 'ParentName',
-	                title: '上级部门'
+	                field: 'email',
+	                title: 'email'
 	            }, {
-	                field: 'Level',
-	                title: '部门级别'
+	                field: 'birthday',
+	                title: '誕生日'
 	            }, {
-	                field: 'Desc',
-	                title: '描述'
+	                field: 'address',
+	                title: '住所'
 	            }, ]
 	        });
 	    };
 
 	    //得到查询的参数
 	    oTableInit.queryParams = function (params) {
+	    	var pageSize = params.limit
+	    	var pageNo = (params.offset/params.limit) + 1; 
+	    	
+	    	
 	        var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-	            limit: params.limit,   //页面大小
-	            offset: params.offset,  //页码
+	        		size: pageSize,   //页面大小
+	        		current: pageNo,
 	            departmentname: $("#txt_search_departmentname").val(),
 	            statu: $("#txt_search_statu").val()
 	        };

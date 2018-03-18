@@ -1,5 +1,12 @@
 package com.baomidou.springmvc.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+
 import com.baomidou.springmvc.common.result.JsonResult;
 
 /**
@@ -69,4 +76,15 @@ public class BaseController {
         result.setObj(obj);
         return result;
     }
+    
+    @InitBinder
+    private void dateBinder(WebDataBinder binder) {
+                //The date format to parse or output your dates
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //Create a new CustomDateEditor
+        CustomDateEditor editor = new CustomDateEditor(dateFormat, true);
+                //Register it as custom editor for the Date type
+        binder.registerCustomEditor(Date.class, editor);
+    }
+    
 }

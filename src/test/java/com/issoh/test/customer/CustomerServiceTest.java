@@ -21,8 +21,8 @@ public class CustomerServiceTest extends BaseServiceTest{
 	
 	@Test
 	public void getlist() {
-//		EntityWrapper<Customer> wapper = new EntityWrapper<Customer>();
-//		List<Customer> list =  customerService.selectList(wapper);
-//		Console.log(JSONUtil.toJsonStr(list));
+		EntityWrapper<Customer> wapper = new EntityWrapper<Customer>();
+		List<Customer> list =  customerService.selectList(wapper);
+		Console.log(JSONUtil.toJsonStr(list));
 	}
 }
