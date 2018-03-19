@@ -2,7 +2,7 @@ host=smtp.gmail.com
 port=465
 from=shikaiwenchina@gmail.com
 user=shikaiwenchina
-pass=shikaiwen666666
+pass=XX
 startttlsEnable=true
 
 
@@ -10,5 +10,5 @@ startttlsEnable=true
 #port=465
 #from=googlevsbing@126.com
 #user=googlevsbing
-#pass=shikaiwen666666
+#pass=XX
 #startttlsEnable=true
