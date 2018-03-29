@@ -1,6 +1,5 @@
 package com.issoh.codegen;
 
-import org.junit.Test;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
@@ -20,7 +19,6 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
  */
 public class GeneratorServiceEntity {
 
-    @Test
     public void generateCode() {
         String packageName = "com.baomidou.springboot";
         boolean serviceNameStartWithI = false;//user -> UserService, 设置成true: user -> IUserService
