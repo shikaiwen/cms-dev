@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.issoh.mapper.tk.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.issoh.entity.tk.Customer">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+  </resultMap>
+  
+  <sql id="Base_Columns">
+	ID as ID,
+	NAME as NAME,
+	BIRTHDAY as BIRTHDAY,
+	ADDRESS as ADDRESS,
+	EMAIL as EMAIL,
+	USER_ID as USER_ID
+</sql>
+
+<sql id="Base_Columns_Alias">
+	${alias}.ID as ${prefix}ID,
+	${alias}.NAME as ${prefix}NAME,
+	${alias}.BIRTHDAY as ${prefix}BIRTHDAY,
+	${alias}.ADDRESS as ${prefix}ADDRESS,
+	${alias}.EMAIL as ${prefix}EMAIL,
+	${alias}.USER_ID as ${prefix}USER_ID
+</sql>
+
+
+<resultMap id="aliasResultMap" type="map" extends="BaseResultMap">
+	<!-- <association property="user" javaType="com.baomidou.springmvc.model.system.User"></association> -->
+	<association property="user" columnPrefix="sysuser_" resultMap="com.issoh.mapper.tk.SysUserMapper.BaseResultMap"/>
+</resultMap>
+	
+
+<select id="getCustomerForPage" resultMap="aliasResultMap">
+	select 
+		customer.*,
+	<include refid="com.issoh.mapper.tk.SysUserMapper.hh">
+		<property name="alias" value="sysuser"/>
+		<property name="prefix" value="sysuser_"/>
+	</include>
+	from customer
+	left join sys_user sysuser on customer.user_id = sysuser.id
+	where 1= 1
+</select>
+  
+  
+</mapper>

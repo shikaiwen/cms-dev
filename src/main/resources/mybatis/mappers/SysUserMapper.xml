@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.issoh.mapper.tk.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.issoh.entity.tk.SysUser">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="type" jdbcType="BIT" property="type" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+  </resultMap>
+  
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		id, name, age
+	</sql>
+	
+	<select id="myall" resultMap="BaseResultMap">
+		select * from sys_user
+	</select>
+
+	<sql id="Base_Columns_Alias">
+		${alias}.ID as ${prefix}ID,
+	${alias}.NAME as ${prefix}NAME,
+	${alias}.AGE as ${prefix}AGE,
+	${alias}.TYPE as ${prefix}TYPE,
+	${alias}.CTIME as ${prefix}CTIME
+	</sql>
+	
+<sql id="hh">
+	${alias}.ID as ${prefix}ID,
+	${alias}.NAME as ${prefix}NAME,
+	${alias}.AGE as ${prefix}AGE,
+	${alias}.TYPE as ${prefix}TYPE,
+	${alias}.CTIME as ${prefix}CTIME
+</sql>
+  
+  
+</mapper>

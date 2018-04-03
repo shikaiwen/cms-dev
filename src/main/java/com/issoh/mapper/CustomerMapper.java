@@ -1,5 +1,7 @@
 package com.issoh.mapper;
 
+import java.util.List;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.issoh.entity.Customer;
 
@@ -12,5 +14,7 @@ import com.issoh.entity.Customer;
  * @since 2018-03-16
  */
 public interface CustomerMapper extends BaseMapper<Customer> {
+	
+	public List<Customer> getCustomerForPage();
 
 }

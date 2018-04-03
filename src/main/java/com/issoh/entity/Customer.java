@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.springmvc.model.system.User;
 
 /**
  * <p>
@@ -28,6 +29,7 @@ public class Customer extends Model<Customer> {
     private String address;
     private String email;
 
+    private User user;
     public Integer getId() {
         return id;
     }
@@ -73,6 +75,15 @@ public class Customer extends Model<Customer> {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

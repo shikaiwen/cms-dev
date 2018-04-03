@@ -12,7 +12,7 @@ import com.baomidou.springmvc.service.system.IUserService;
  * User 表数据服务层接口实现类
  *
  */
-@Service
+//@Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
 
